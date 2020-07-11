@@ -1,5 +1,6 @@
 let fs = require('fs');
 let inquirer = require('inquirer');
+let axios = require('axios');
 let licenseBadges = {
     "MIT": "[![MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)",
     "GPL 3": "[![GPL3](https://img.shields.io/badge/License-GPLv3-blue.svg)](http://perso.crans.org/besson/LICENSE.html)",
@@ -64,8 +65,15 @@ inquirer.prompt([
     let githubLink = 'https://github.com/' + data.username;
     let githubAvatar = 'https://github.com/' + data.username + '.png';
     let formattedAvatar = '![avatar](' + githubAvatar + ')';
-    let template =
-        `# ${data.title}
+    let queryEmailUrl = 'https://api.github.com/users/' + data.username + '/events/public';
+
+    axios.get(queryEmailUrl)
+        .then(function (response) {
+            // handle success
+            let email = response.data[0].payload.commits[0].author.email;
+
+            let template =
+                `# ${data.title}
 
 ${data.description ? '## Description' : ''}
 ${data.description}
@@ -96,20 +104,26 @@ ${data.contributing}
 ${data.test ? '## Tests' : ''}
 ${data.test}
 
-${data.username? '## Author': ''}
-${data.username? 'Name: '+ data.username + ' <br/>' : ''} 
-${data.email?'Email: ' + data.email + ' <br/>': ''}
-${data.username? 'Github: '+ githubLink + ' <br/>': ''} 
-${data.username? 'Profile picture ' + ' <br/> ' + formattedAvatar : ''}`;
+${data.username ? '## Author' : ''}
+${data.username ? 'Name: ' + data.username + ' <br/>' : ''} 
+${data.username ? 'Email: ' + email + ' <br/>' : ''}
+${data.username ? 'Github: ' + githubLink + ' <br/>' : ''} 
+${data.username ? 'Profile picture ' + ' <br/> ' + formattedAvatar : ''}`;
 
 
-    fs.writeFile("generated.md", template, data, function (err) {
+            fs.writeFile("generated.md", template, data, function (err) {
 
-        if (err) {
-            return console.log(err);
-        }
+                if (err) {
+                    return console.log('Incorrect username' + err.statusText);
+                }
 
-        console.log("Success!");
-    });
+                console.log("Success!");
+            });
 
+        }).catch(function (error) {
+            console.log('Incorrect username' + error.statusText);
+        });
+
+}).catch(function (error) {
+    console.log(error);
 });

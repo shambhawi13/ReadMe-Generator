@@ -1,0 +1,27 @@
+# ${data.title}
+ 
+## Description
+${data.description}
+
+## Table of Contents 
+[link](${})
+
+## Installation
+${data.installation}
+
+## Usage
+${data.usage}
+
+## Credits
+${data.credit}
+
+## License
+${data.license}
+
+## Badges
+
+## Contributing
+${data.contributing}
+
+## Tests
+${data.test}

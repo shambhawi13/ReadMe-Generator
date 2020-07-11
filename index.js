@@ -1,5 +1,10 @@
 let fs = require('fs');
 let inquirer = require('inquirer');
+let licenseBadges = {
+    "MIT": "[![MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)",
+    "GPL 3": "[![GPL3](https://img.shields.io/badge/License-GPLv3-blue.svg)](http://perso.crans.org/besson/LICENSE.html)",
+    "GPL": "[![GPL](https://img.shields.io/badge/License-GPL-blue.svg)](http://perso.crans.org/besson/LICENSE.html)"
+};
 
 inquirer.prompt([
     {
@@ -28,9 +33,15 @@ inquirer.prompt([
         message: "How can your application be used?"
     },
     {
-        type: "input",
+        type: "checkbox",
         name: "license",
-        message: "Enter license detail, If any?"
+        message: "Select license",
+        choices: [
+            "MIT",
+            "GPL 3",
+            "GPL",
+            "Unlicensed"
+        ]
     },
     {
         type: "input",
@@ -50,43 +61,49 @@ inquirer.prompt([
 ]).then(function (data) {
 
     console.log(data);
-let template = 
-`# ${data.title}
+    let githubLink = 'https://github.com/' + data.username;
+    let githubAvatar = 'https://github.com/' + data.username + '.png';
+    let formattedAvatar = '![avatar](' + githubAvatar + ')';
+    let template =
+        `# ${data.title}
 
-${data.description?'## Description' : ''}
+${data.description ? '## Description' : ''}
 ${data.description}
 
 ## Table of Contents 
-${data.installation?'* [Installation](#installation)' : ''}
-* [Usage](#usage)
-* [Credits](#credits)
-* [License](#license)
-* [Badges](#badges)
-* [Contributing](#contributing)
-* [Tests](#Tests)
+${data.installation ? '* [Installation](#installation)' : ''}
+${data.usage ? '* [Usage](#usage)' : ''}
+${data.credit ? '* [Credits](#credits)' : ''}
+${data.license ? '* [License](#license)' : ''}
+${data.contributing ? '* [Contributing](#contributing)' : ''}
+${data.test ? '* [Tests](#Tests)' : ''}
 
-${data.installation?'## Installation' : ''}
+${data.installation ? '## Installation' : ''}
 ${data.installation}
 
-${data.usage?'## Usage' : ''}
+${data.usage ? '## Usage' : ''}
 ${data.usage}
 
-${data.credit?'## Credits' : ''}
+${data.credit ? '## Credits' : ''}
 ${data.credit}
 
-${data.license?'## License' : ''}
-${data.license}
+${data.license ? '## License' : ''}
+${data.license && (data.license == 'MIT' || data.license == 'GPL 3' || data.license == 'GPL') ? licenseBadges[data.license] : data.license}
 
-${data.badges?'## Badges' : ''}
-
-${data.contributing?'## Contributing' : ''}
+${data.contributing ? '## Contributing' : ''}
 ${data.contributing}
 
-${data.test?'## Tests' : ''}
-${data.test}`;
+${data.test ? '## Tests' : ''}
+${data.test}
 
-    //JSON.stringify(data, null, '\t')
-    fs.writeFile("generated.md", template , data, function (err) {
+${data.username? '## Author': ''}
+${data.username? 'Name: '+ data.username + ' <br/>' : ''} 
+${data.email?'Email: ' + data.email + ' <br/>': ''}
+${data.username? 'Github: '+ githubLink + ' <br/>': ''} 
+${data.username? 'Profile picture ' + ' <br/> ' + formattedAvatar : ''}`;
+
+
+    fs.writeFile("generated.md", template, data, function (err) {
 
         if (err) {
             return console.log(err);

@@ -41,11 +41,6 @@ Here is how the application works:
 
 - Clone the repository : git clone https://github.com/shambhawi13/ReadMe-Generator.git
 
-
-## Deployed Link
-
-[Live Hosted on](https://shambhawi13.github.io/ReadMe-Generator/)
-
 ## Authors
 
 * **Shambhawi Kumari**
@@ -56,7 +51,6 @@ Here is how the application works:
 ## Review URL
 
 [GitHub](https://github.com/shambhawi13/ReadMe-Generator)
-[Live](https://shambhawi13.github.io/ReadMe-Generator/)
 
 
 

@@ -1,6 +1,6 @@
 # ReadMe-Generator
 
-This is a node application that generates readme just by providing set of questions asked by user. The application takes care of retrieving user avatar and email by hitting github api. User has to provide following list of questions :
+This is a node application that generates readme just by providing set of questions asked by user. The application takes care of retrieving user avatar and email by hitting github api using axios. It also validates and remove the section which is not given by user. User has to provide following list of questions :
 
 - Provide github username
 - What is your project title?

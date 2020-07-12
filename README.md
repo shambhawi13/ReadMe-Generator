@@ -16,7 +16,12 @@ This is a node application that generates readme just by providing set of questi
 ```
 Here is how the application works:
 ```
-![readme](Assets/Entry.png)
+![generated readme](https://media.giphy.com/media/d7a4kFxQdeQDe6vLTt/giphy.gif)
+
+```
+Final Result
+```
+![readme](./Assets/final.png)
 
 
 ## Prerequisites

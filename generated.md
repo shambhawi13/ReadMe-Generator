@@ -1,33 +1,33 @@
 # README
 
 ## Description
-askhadv sdcsjdv
+test
 
 ## Table of Contents 
 * [Installation](#installation)
-* [Usage](#usage)
 
+* [Credits](#credits)
 * [License](#license)
 
-* [Tests](#Tests)
+
 
 ## Installation
-djsd
-
-## Usage
-zdkjsdk
+test
 
 
 
+
+## Credits
+testy
 
 ## License
+[![MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
 
 
 
 
-## Tests
-sdfjsd
+
 
 ## Author
 Name: shambhawi13 <br/> 

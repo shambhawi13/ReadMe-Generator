@@ -1,33 +1,33 @@
-# README
+# generate readme
 
 ## Description
 test
 
 ## Table of Contents 
 * [Installation](#installation)
-
+* [Usage](#usage)
 * [Credits](#credits)
 * [License](#license)
-
-
+* [Contributing](#contributing)
+* [Tests](#Tests)
 
 ## Installation
 test
 
-
-
+## Usage
+test
 
 ## Credits
-testy
+test
 
 ## License
 [![MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
+## Contributing
+test
 
-
-
-
-
+## Tests
+test
 
 ## Author
 Name: shambhawi13 <br/> 
